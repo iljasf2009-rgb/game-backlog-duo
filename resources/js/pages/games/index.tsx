@@ -88,6 +88,7 @@ export default function Index({ games }: { games: Game[] }) {
             <section>
                 <div className="gb-list-heading">
                     <h2>Mijn games</h2>
+                    <p>Zichtbaar: {visibleGames.length} van {games.length}</p>
                     <label>Zoek op titel
                         <input value={search} placeholder="Zoek een game..."
                             onChange={(e) => setSearch(e.target.value)} />
@@ -104,7 +105,7 @@ export default function Index({ games }: { games: Game[] }) {
                     <p className="gb-empty">Je lijst is leeg. Voeg je eerste game toe.</p>
                 ) : visibleGames.length === 0 ? (
                     <p className="gb-empty">Geen games gevonden. Probeer een andere zoektekst.</p>
-                ) : (
+                ) : games.length > 0 && visibleGames.length > 0 && (
                     <div className="gb-grid">
                         {visibleGames.map((game) => <GameCard key={game.id} game={game} />)}
                     </div>
